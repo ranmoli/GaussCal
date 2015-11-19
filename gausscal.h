@@ -1,7 +1,11 @@
 #ifndef GAUSSCAL_H
 #define GAUSSCAL_H
 
+#include<cmath>
+#include<cstdlib>
+
 enum Ellipse{el54,el80,el84};
+enum ZoneWide{six,three};
 class GaussCal
 {
 
@@ -29,13 +33,23 @@ public:
     double latitude() const;
     void setLatitude(double latitude);
 
+    ZoneWide zonewide() const;
+    void setZonewide(const ZoneWide &zonewide);
+
+    void calculate();
+
 protected:
     bool _isDirectCal;//true/false：正算/反算
     Ellipse _ellipse;//椭球类型
+    ZoneWide _zonewide;//带宽
 
-    //needing init:
-    double _centMerdianLo;//中央子午线经度
-    double _x,_y,_longitude,_latitude;
+    //
+
+    double _x,_y,_longitude,_latitude,_centMerdianLo;
 };
+
+void GaussProjCal(double longitude, double latitude, double *X, double *Y,Ellipse ellipse,ZoneWide zonewide);
+void GaussProjInvCal(double X, double Y, double *longitude, double *latitude,Ellipse ellipse,ZoneWide zonewide);
+
 
 #endif // GAUSSCAL_H

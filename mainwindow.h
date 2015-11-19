@@ -28,6 +28,7 @@ private slots:
     void on_changeButton_clicked();
     void on_ellipseBox_currentIndexChanged(int index);
     void on_calButton_clicked();
+    void on_comboBox_activated(int index);
 };
 
 #endif // MAINWINDOW_H
